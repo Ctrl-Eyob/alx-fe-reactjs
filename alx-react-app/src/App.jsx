@@ -1,24 +1,14 @@
 // src/App.jsx
 
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import WelcomeMessage from './components/WelcomeMessage';
-import React from 'react';
-import Header from './Header';
-import MainContent from './MainContent';
-import Footer from './Footer';
+import reactLogo from './assets/react.svg';        // relative path to assets inside src
+import viteLogo from '/vite.svg';                  // absolute path (likely in public folder)
+import './App.css';                                // CSS file in src folder
+import Header from './components/Header';         // Header.jsx inside src/components
+import MainContent from './components/MainContent'; // MainContent.jsx inside src/components
+import Footer from './components/Footer';   
 
-function App() {
-  return (
-    <>
-      <Header />
-      <MainContent />
-      <Footer />
-    </>
-  );
-}
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -51,7 +41,10 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-    </>
+      <Header />
+      <MainContent />
+      <Footer />
+     </>
   );
 }
 
