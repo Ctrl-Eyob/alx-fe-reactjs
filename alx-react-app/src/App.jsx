@@ -6,7 +6,8 @@ import viteLogo from '/vite.svg';                  // absolute path (likely in p
 import './App.css';                                // CSS file in src folder
 import Header from './components/Header';         // Header.jsx inside src/components
 import MainContent from './components/MainContent'; // MainContent.jsx inside src/components
-import Footer from './components/Footer';   
+import Footer from './components/Footer';
+import UserProfile from './components/UserProfile';
 
 
 function App() {
@@ -44,6 +45,13 @@ function App() {
       <Header />
       <MainContent />
       <Footer />
+       <div>
+      <UserProfile
+        name="Alice"
+        age={25}
+        bio="Loves hiking and photography"
+      />
+    </div>
      </>
   );
 }
