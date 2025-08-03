@@ -1,9 +1,26 @@
-function Footer() {
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Services from './pages/Services';
+import Contact from './pages/Contact';
+import Footer from './components/Footer'; // Optional
+
+function App() {
   return (
-    <footer style={{ background: '#333', color: '#fff', textAlign: 'center', padding: '10px' }}>
-      <p>&copy; 2025 My Company. All rights reserved.</p>
-    </footer>
+    <BrowserRouter>
+      <div style={{ fontFamily: 'Arial, sans-serif' }}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
-export default Footer;
+export default App;
