@@ -1,35 +1,58 @@
-import { useState } from 'react';
-import { useRecipeStore } from '../store/recipeStore';
+import { create } from 'zustand';
 
-const EditRecipeForm = ({ recipe }) => {
-  const [title, setTitle] = useState(recipe.title);
-  const [description, setDescription] = useState(recipe.description);
-  const updateRecipe = useRecipeStore((state) => state.updateRecipe);
+export const useRecipeStore = create((set, get) => ({
+  recipes: [],
+  searchTerm: '',
+  filteredRecipes: [],
+  
+  addRecipe: (newRecipe) =>
+    set((state) => {
+      const updatedRecipes = [...state.recipes, newRecipe];
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: applyFilter(updatedRecipes, state.searchTerm),
+      };
+    }),
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // ← this is what ensures form doesn't reload the page
-    updateRecipe({ ...recipe, title, description });
-  };
+  deleteRecipe: (id) =>
+    set((state) => {
+      const updatedRecipes = state.recipes.filter((r) => r.id !== id);
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: applyFilter(updatedRecipes, state.searchTerm),
+      };
+    }),
 
-  return (
-    <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
-      <h3>Edit Recipe</h3>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-        style={{ display: 'block', marginBottom: '10px' }}
-      />
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-        style={{ display: 'block', marginBottom: '10px' }}
-      />
-      <button type="submit">Update</button>
-    </form>
+  updateRecipe: (updatedRecipe) =>
+    set((state) => {
+      const updatedRecipes = state.recipes.map((r) =>
+        r.id === updatedRecipe.id ? updatedRecipe : r
+      );
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: applyFilter(updatedRecipes, state.searchTerm),
+      };
+    }),
+
+  setSearchTerm: (term) => {
+    set({ searchTerm: term });
+    const { recipes } = get();
+    set({ filteredRecipes: applyFilter(recipes, term) });
+  },
+
+  setRecipes: (recipes) =>
+    set({
+      recipes,
+      filteredRecipes: applyFilter(recipes, get().searchTerm),
+    }),
+}));
+
+const applyFilter = (recipes, term) => {
+  if (!term.trim()) return recipes;
+  const lowerTerm = term.toLowerCase();
+  return recipes.filter(
+    (recipe) =>
+      recipe.title.toLowerCase().includes(lowerTerm) ||
+      recipe.description.toLowerCase().includes(lowerTerm)
   );
 };
-
-export default EditRecipeForm;
