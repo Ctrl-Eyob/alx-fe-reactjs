@@ -1,5 +1,4 @@
 // src/App.jsx
-import Counter from './components/Counter';
 import React from 'react';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
@@ -11,10 +10,11 @@ function App() {
     <div>
       <Header />
       <MainContent />
-      <Counter /> {/* ✅ Add Counter */}
+      <Counter /> {/* ✅ Counter component rendered */}
       <Footer />
     </div>
   );
 }
 
 export default App;
+
