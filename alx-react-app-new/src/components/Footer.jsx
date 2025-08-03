@@ -1,12 +1,12 @@
-// Footer.jsx
+// src/components/Footer.jsx
 import React from 'react';
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer>
-      <p>© 2023 City Lovers</p>
+    <footer style={{ backgroundColor: '#333', color: 'white', textAlign: 'center', padding: '15px' }}>
+      <p>© 2025 Favorite Cities App. All rights reserved.</p>
     </footer>
   );
-}
+};
 
 export default Footer;
