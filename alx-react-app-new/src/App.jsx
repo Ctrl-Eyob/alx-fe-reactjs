@@ -8,6 +8,8 @@ import Header from './components/Header';         // Header.jsx inside src/compo
 import MainContent from './components/MainContent'; // MainContent.jsx inside src/components
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
+import Counter from './components/Counter'; // ✅ Import Counter
+
 
 
 function App() {
