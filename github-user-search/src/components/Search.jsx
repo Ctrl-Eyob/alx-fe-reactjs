@@ -6,14 +6,20 @@ const Search = () => {
   const [user, setUser] = useState(null);
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
 
+  // ✅ fetchUserData now defined inside this file
+  const fetchUserData = async (username) => {
+    const response = await axios.get(`https://api.github.com/users/${username}`);
+    return response.data;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
     setStatus('loading');
     try {
-      const response = await axios.get(`https://api.github.com/users/${input.trim()}`);
-      setUser(response.data);
+      const data = await fetchUserData(input.trim());
+      setUser(data);
       setStatus('success');
     } catch (error) {
       setStatus('error');
