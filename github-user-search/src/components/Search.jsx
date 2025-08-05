@@ -5,7 +5,7 @@ const Search = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.trim() !== '') {
+    if (input.trim()) {
       onSearch(input.trim());
     }
   };

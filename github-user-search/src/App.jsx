@@ -10,8 +10,8 @@ function App() {
   const handleSearch = async (username) => {
     setStatus('loading');
     try {
-      const userData = await fetchUserData(username);
-      setUser(userData);
+      const data = await fetchUserData(username);
+      setUser(data);
       setStatus('success');
     } catch (error) {
       setStatus('error');
@@ -25,7 +25,7 @@ function App() {
       <Search onSearch={handleSearch} />
 
       {status === 'loading' && <p>Loading...</p>}
-      {status === 'error' && <p style={{ color: 'red' }}>Looks like we can't find the user.</p>}
+      {status === 'error' && <p>Looks like we can’t find the user.</p>}
       {status === 'success' && user && (
         <div className="user-result">
           <img src={user.avatar_url} alt={user.login} width="100" />
