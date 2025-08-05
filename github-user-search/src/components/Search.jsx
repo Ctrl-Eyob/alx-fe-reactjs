@@ -34,7 +34,7 @@ const Search = () => {
       </form>
 
       {status === 'loading' && <p>Loading...</p>}
-      {status === 'error' && <p>Looks like we can't find the user.</p>}
+      {status === 'error' && <p>Looks like we cant find the user.</p>}
       {status === 'success' && user && (
         <div className="user-result">
           <img src={user.avatar_url} alt={user.login} width="100" />
