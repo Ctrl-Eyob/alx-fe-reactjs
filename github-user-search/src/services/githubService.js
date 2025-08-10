@@ -25,3 +25,19 @@ export async function searchUsers({ username, location, minRepos, page = 1 }) {
   const data = await res.json();
   return data;
 }
+// src/services/githubService.js
+import axios from 'axios';
+
+export async function searchUsers({ username, location, minRepos, page = 1 }) {
+  let queryParts = [];
+
+  if (username) queryParts.push(`${username} in:login`);
+  if (location) queryParts.push(`location:${location}`);
+  if (minRepos) queryParts.push(`repos:>=${minRepos}`);
+
+  const query = queryParts.join(' ');
+  const url = `${BASE_URL}?q=${encodeURIComponent(query)}&page=${page}&per_page=10`;
+
+  const res = await axios.get(url);
+  return res.data; // GitHub Search API response
+}
