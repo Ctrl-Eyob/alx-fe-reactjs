@@ -1,24 +1,16 @@
 import { useState } from "react";
 
 export default function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
 
   const validate = () => {
     let newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
     return newErrors;
   };
 
@@ -47,8 +39,8 @@ export default function RegistrationForm() {
         <input
           type="text"
           name="username"
-          value={formData.username}
-          onChange={handleChange}
+          value={username} {/* ✅ explicit binding */}
+          onChange={(e) => setUsername(e.target.value)}
           className="border rounded px-2 py-1 w-full"
         />
         {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
@@ -59,8 +51,8 @@ export default function RegistrationForm() {
         <input
           type="email"
           name="email"
-          value={formData.email}
-          onChange={handleChange}
+          value={email} {/* ✅ explicit binding */}
+          onChange={(e) => setEmail(e.target.value)}
           className="border rounded px-2 py-1 w-full"
         />
         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
@@ -71,8 +63,8 @@ export default function RegistrationForm() {
         <input
           type="password"
           name="password"
-          value={formData.password}
-          onChange={handleChange}
+          value={password} {/* ✅ explicit binding */}
+          onChange={(e) => setPassword(e.target.value)}
           className="border rounded px-2 py-1 w-full"
         />
         {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
