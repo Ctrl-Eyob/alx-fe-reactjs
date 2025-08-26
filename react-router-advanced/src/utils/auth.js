@@ -1,6 +1,3 @@
-// src/utils/auth.js
-
-// Simulate user authentication with localStorage
 export const isAuthenticated = () => {
   return localStorage.getItem("auth") === "true";
 };
