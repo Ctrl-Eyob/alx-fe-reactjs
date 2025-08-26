@@ -1,13 +1,12 @@
-// src/App.jsx
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
 import ProfileDetails from "./pages/ProfileDetails";
 import ProfileSettings from "./pages/ProfileSettings";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
