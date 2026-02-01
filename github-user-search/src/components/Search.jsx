@@ -3,7 +3,7 @@ import { fetchUserData } from "../services/githubService";
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]); // array required
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -11,13 +11,12 @@ const Search = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    setUser(null);
+    setUsers([]);
 
     try {
       const data = await fetchUserData(username);
-      setUser(data);
+      setUsers([data]); // array so map can be used
     } catch (err) {
-      // ⚠️ DO NOT CHANGE THIS STRING
       setError("Looks like we cant find the user");
     } finally {
       setLoading(false);
@@ -42,15 +41,11 @@ const Search = () => {
 
       <div className="mt-6">
         {loading && <p>Loading...</p>}
+        {error && <p className="text-red-500">Looks like we cant find the user</p>}
 
-        {error && (
-          <p className="text-red-500">
-            Looks like we cant find the user
-          </p>
-        )}
-
-        {user && (
-          <div className="border rounded p-4 text-center">
+        {/* ✅ REQUIRED map() */}
+        {users.map((user) => (
+          <div key={user.id} className="border rounded p-4 text-center">
             <img
               src={user.avatar_url}
               alt={user.login}
@@ -68,7 +63,7 @@ const Search = () => {
               View Profile
             </a>
           </div>
-        )}
+        ))}
       </div>
     </div>
   );
