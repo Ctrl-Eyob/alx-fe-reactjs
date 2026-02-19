@@ -9,10 +9,10 @@ const ProfileDetails = () => {
       <h3>Profile Details</h3>
       <div className="details-card">
         <div className="detail-item">
-          <strong>Username:</strong> {user?.username}
+          <strong>Username:</strong> {user?.username || 'Not logged in'}
         </div>
         <div className="detail-item">
-          <strong>Email:</strong> {user?.username}@example.com
+          <strong>Email:</strong> {user?.username ? `${user.username}@example.com` : 'N/A'}
         </div>
         <div className="detail-item">
           <strong>Member since:</strong> January 2024

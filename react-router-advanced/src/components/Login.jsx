@@ -9,20 +9,17 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Get the page they tried to visit before being redirected
   const from = location.state?.from?.pathname || '/profile';
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     
-    // Simple validation
     if (!credentials.username || !credentials.password) {
       setError('Please fill in all fields');
       return;
     }
     
-    // Simple authentication (in real app, this would be an API call)
     if (credentials.password.length >= 3) {
       login({ username: credentials.username });
       navigate(from, { replace: true });

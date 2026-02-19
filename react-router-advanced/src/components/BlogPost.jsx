@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
-// Mock blog posts data
 const blogPosts = {
   1: {
     id: 1,
@@ -18,14 +17,6 @@ const blogPosts = {
     author: "Jane Smith",
     date: "2024-01-20",
     category: "Advanced"
-  },
-  3: {
-    id: 3,
-    title: "State Management in React",
-    content: "State management is crucial in React applications. Learn about different approaches including useState, useReducer, Context API, and when to use external libraries like Redux or Zustand.",
-    author: "Bob Johnson",
-    date: "2024-01-25",
-    category: "State Management"
   }
 };
 
@@ -36,7 +27,6 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate fetching post data
     setLoading(true);
     setTimeout(() => {
       setPost(blogPosts[postId] || null);

@@ -22,7 +22,6 @@ const Profile = () => {
         </Link>
       </div>
       <div className="profile-content">
-        {/* Outlet renders the nested route components (ProfileDetails or ProfileSettings) */}
         <Outlet />
       </div>
     </div>

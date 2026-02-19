@@ -25,12 +25,6 @@ const Home = () => {
           <p>Profile pages are protected and require login. Try accessing Profile without logging in</p>
           <Link to="/profile" className="feature-link">Try Accessing Profile →</Link>
         </div>
-        
-        <div className="feature-card">
-          <h3>404 Handling</h3>
-          <p>Try visiting a non-existent page to see the 404 error handling</p>
-          <Link to="/nonexistent" className="feature-link">Test 404 Page →</Link>
-        </div>
       </div>
     </div>
   );
