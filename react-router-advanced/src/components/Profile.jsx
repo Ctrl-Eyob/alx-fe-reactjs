@@ -10,7 +10,7 @@ const Profile = () => {
       <div className="profile-nav">
         <Link 
           to="/profile/details" 
-          className={`nav-link ${location.pathname === '/profile/details' ? 'active' : ''}`}
+          className={`nav-link ${location.pathname === '/profile/details' || location.pathname === '/profile' ? 'active' : ''}`}
         >
           Details
         </Link>
@@ -22,6 +22,7 @@ const Profile = () => {
         </Link>
       </div>
       <div className="profile-content">
+        {/* Outlet renders the nested route components (ProfileDetails or ProfileSettings) */}
         <Outlet />
       </div>
     </div>
